@@ -20,9 +20,9 @@
             </el-text>
           </p>
         </div>
-        <el-dropdown-item class="border-t p-8" @click="openResetPassword">
+<!--        <el-dropdown-item class="border-t p-8" @click="openResetPassword">
           {{ $t('views.login.resetPassword') }}
-        </el-dropdown-item>
+        </el-dropdown-item>-->
         <div v-hasPermission="new ComplexPermission([], ['x-pack'], 'OR')">
           <el-dropdown-item class="border-t p-8" @click="openAPIKeyDialog">
             {{ $t('layout.apiKey') }}
@@ -59,9 +59,9 @@
             </template>
           </el-dropdown>
         </el-dropdown-item>
-        <el-dropdown-item class="border-t" @click="openAbout">
+<!--        <el-dropdown-item class="border-t" @click="openAbout">
           {{ $t('layout.about.title') }}
-        </el-dropdown-item>
+        </el-dropdown-item>-->
 
         <el-dropdown-item class="border-t" @click="logout">
           {{ $t('layout.logout') }}
@@ -69,10 +69,10 @@
       </el-dropdown-menu>
     </template>
   </el-dropdown>
-  <ResetPassword ref="resetPasswordRef"></ResetPassword>
+<!--  <ResetPassword ref="resetPasswordRef"></ResetPassword>-->
   <AboutDialog ref="AboutDialogRef"></AboutDialog>
   <APIKeyDialog :user-id="user.userInfo?.id" ref="APIKeyDialogRef" />
-  <UserPwdDialog ref="UserPwdDialogRef" />
+<!--  <UserPwdDialog ref="UserPwdDialogRef" />-->
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'

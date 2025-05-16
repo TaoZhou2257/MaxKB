@@ -269,12 +269,13 @@ function openCreateDialog() {
       if (res?.data) {
         CreateApplicationDialogRef.value.open()
       } else if (res?.code === 400) {
-        MsgConfirm(t('common.tip'), t('views.application.tip.professionalMessage'), {
+        CreateApplicationDialogRef.value.open()
+        /*MsgConfirm(t('common.tip'), t('views.application.tip.professionalMessage'), {
           cancelButtonText: t('common.confirm'),
           confirmButtonText: t('common.professional')
         }).then(() => {
           window.open('https://maxkb.cn/pricing.html', '_blank')
-        })
+        })*/
       }
     })
 }

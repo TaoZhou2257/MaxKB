@@ -2,10 +2,7 @@
   <div class="login-warp flex-center">
     <div class="login-container w-full h-full">
       <el-row class="container w-full h-full">
-        <el-col :xs="0" :sm="0" :md="10" :lg="10" :xl="10" class="left-container">
-          <div class="login-image" :style="{ backgroundImage: `url(${loginImage})` }"></div>
-        </el-col>
-        <el-col :xs="24" :sm="24" :md="14" :lg="14" :xl="14" class="right-container flex-center">
+        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="full-container flex-center">
           <el-dropdown trigger="click" type="primary" class="lang" v-if="lang">
             <template #dropdown>
               <el-dropdown-menu style="width: 180px">
@@ -29,9 +26,6 @@
                 </el-dropdown-item>
               </el-dropdown-menu>
             </template>
-            <el-button>
-              {{ currentLanguage }}<el-icon class="el-icon--right"><arrow-down /></el-icon>
-            </el-button>
           </el-dropdown>
           <slot></slot>
         </el-col>
@@ -87,21 +81,29 @@ const loginImage = computed(() => {
 <style lang="scss" scoped>
 .login-warp {
   height: 100vh;
+  background-color: #f5f7fa; /* 修改背景颜色 */
+  //background-image: url('../../assets/theme/default.jpg'); /* 修改背景图片 */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 
-  .login-image {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+  .login-container {
     width: 100%;
     height: 100%;
   }
-  .right-container {
-    position: relative;
-    .lang {
-      position: absolute;
-      right: 20px;
-      top: 20px;
-    }
+
+  .full-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .lang {
+    position: absolute;
+    right: 20px;
+    top: 20px;
   }
 }
 </style>

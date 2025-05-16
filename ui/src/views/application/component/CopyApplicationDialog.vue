@@ -151,7 +151,8 @@ const submitValid = (formEl: FormInstance | undefined) => {
         if (res?.data) {
           submitHandle(formEl)
         } else {
-          MsgAlert(t('common.tip'), t('views.application.tip.professionalMessage'))
+          //MsgAlert(t('common.tip'), t('views.application.tip.professionalMessage'))
+          submitHandle(formEl)
         }
       })
   }

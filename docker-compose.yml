@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  naukb:
+    container_name: naukb
+    image: avatarteam/naukb:v1.0
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./.naukb:/var/lib/postgresql/data
+      - ./.python-packages:/opt/maxkb/app/sandbox/python-packages
+      - ./ui:/opt/maxkb/app/ui/dist/ui

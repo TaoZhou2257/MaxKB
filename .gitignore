@@ -135,11 +135,8 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
 .venv
-env/
 venv/
-ENV/
 env.bak/
 venv.bak/
 
@@ -183,5 +180,5 @@ apps/xpack
 data
 .dev
 poetry.lock
-apps/setting/models_provider/impl/*/icon/
+#apps/setting/models_provider/impl/*/icon/
 tmp/

@@ -222,14 +222,15 @@ function openCreateDialog() {
     if (res?.data) {
       CreateDatasetDialogRef.value.open()
     } else if (res?.code === 400) {
-      MsgConfirm(t('common.tip'), t('views.dataset.tip.professionalMessage'), {
+      CreateDatasetDialogRef.value.open()
+      /*MsgConfirm(t('common.tip'), t('views.dataset.tip.professionalMessage'), {
         cancelButtonText: t('common.confirm'),
         confirmButtonText: t('common.professional')
       })
         .then(() => {
           window.open('https://maxkb.cn/pricing.html', '_blank')
         })
-        .catch(() => {})
+        .catch(() => {})*/
     }
   })
 }

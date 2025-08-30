@@ -13,7 +13,7 @@
     </template>
     <template #footer>
       <span class="card-footer-left color-secondary">
-        {{ `${$t('common.author')}: MaxKB` }}
+        {{ `${$t('common.author')}: NauKB` }}
       </span>
       <div class="card-footer-operation" @click.stop>
         <el-button @click="emit('handleDetail')">

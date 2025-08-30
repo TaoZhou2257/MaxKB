@@ -1,5 +1,5 @@
 <template>
-  <div class="flex align-center">
+<!--  <div class="flex align-center">
     <el-button round @click="toUrl('https://maxkb.cn/pricing.html')" class="pricing-button mr-8"
       v-hasPermission="EditionConst.IS_CE"
     >
@@ -45,7 +45,7 @@
         @click="toUrl(theme.themeInfo?.forumUrl)"
       ></AppIcon>
     </el-tooltip>
-  </div>
+  </div>-->
 </template>
 <script setup lang="ts">
 import useStore from '@/stores'

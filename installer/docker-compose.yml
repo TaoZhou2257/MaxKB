@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  naukb:
+    container_name: naukb
+    image: avatarteam/naukb:v1.0
+    ports:
+      - "8083:8080"
+    volumes:
+      - ./.naukb:/opt/maxkb
+      - ./admin:/opt/maxkb-app/ui/dist/admin

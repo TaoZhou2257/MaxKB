@@ -590,10 +590,10 @@ class DocumentSerializers(serializers.Serializer):
 
             workbook = DocumentSerializers.Operate.get_workbook(data_dict, document_dict)
             response = HttpResponse(content_type='application/zip')
-            response['Content-Disposition'] = 'attachment; filename="archive.zip"'
+            response['Content-Disposition'] = f'attachment; filename="{document.name}.zip"'
             zip_buffer = io.BytesIO()
             with TemporaryDirectory() as tempdir:
-                knowledge_file = os.path.join(tempdir, 'knowledge.xlsx')
+                knowledge_file = os.path.join(tempdir, 'document.xlsx')
                 workbook.save(knowledge_file)
                 for r in res:
                     write_image(tempdir, r)
@@ -1305,6 +1305,7 @@ class DocumentSerializers(serializers.Serializer):
             document_id_list = instance.get("document_id_list")
             model_id = instance.get("model_id")
             prompt = instance.get("prompt")
+            model_params_setting = instance.get("model_params_setting")
             state_list = instance.get('state_list')
             ListenerManagement.update_status(
                 QuerySet(Document).filter(id__in=document_id_list),
@@ -1327,7 +1328,7 @@ class DocumentSerializers(serializers.Serializer):
                 QuerySet(Document).filter(id__in=document_id_list))()
             try:
                 for document_id in document_id_list:
-                    generate_related_by_document_id.delay(document_id, model_id, prompt, state_list)
+                    generate_related_by_document_id.delay(document_id, model_id, model_params_setting, prompt, state_list)
             except AlreadyQueued as e:
                 pass
 

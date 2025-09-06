@@ -8,10 +8,13 @@
     :on-change="(file: any, fileList: any) => uploadFile(file, fileList)"
     v-model:file-list="model_value"
     multiple
+    :show-file-list="false"
   >
     <el-button type="primary">{{ $t('chat.uploadFile.label') }}</el-button>
-    <template #file="{ file }">
-      <el-card style="--el-card-padding: 0" shadow="never" class="upload_content">
+  </el-upload>
+  <el-space wrap class="w-full media-file-width upload_content mt-16">
+    <template v-for="(file, index) in model_value" :key="index">
+      <el-card style="--el-card-padding: 0" shadow="never">
         <div
           class="flex-between"
           :class="[inputDisabled ? 'is-disabled' : '']"
@@ -24,16 +27,16 @@
             </span>
           </div>
           <div class="flex align-center">
-            <div>{{ formatSize(file.size) }}</div>
+            <div class="ellipsis-1" :title="formatSize(file.size)">{{ formatSize(file.size) }}</div>
 
-            <el-button link class="ml-8" @click="deleteFile(file)">
+            <el-button link class="ml-8" @click="deleteFile(file)" v-if="!inputDisabled">
               <AppIcon iconName="app-delete"></AppIcon>
             </el-button>
           </div>
         </div>
       </el-card>
     </template>
-  </el-upload>
+  </el-space>
 </template>
 <script setup lang="ts">
 import { computed, inject, ref, useAttrs } from 'vue'
@@ -72,7 +75,7 @@ const deleteFile = (file: any) => {
 
 const model_value = computed({
   get: () => {
-    if (!model_value.value) {
+    if (!props.modelValue) {
       emit('update:modelValue', [])
     }
     return props.modelValue
@@ -120,6 +123,38 @@ const uploadFile = async (file: any, fileList: Array<any>) => {
     cursor: not-allowed;
     &:hover {
       cursor: not-allowed;
+    }
+  }
+  &.media-file-width {
+    :deep(.el-space__item) {
+      width: calc(50% - 4px) !important;
+    }
+  }
+}
+@media only screen and (max-width: 768px) {
+  .upload_content {
+    &.media-file-width {
+      :deep(.el-space__item) {
+        min-width: 100% !important;
+      }
+    }
+  }
+}
+.debug-ai-chat {
+  .upload_content {
+    &.media-file-width {
+      :deep(.el-space__item) {
+        min-width: 100% !important;
+      }
+    }
+  }
+}
+.execution-details {
+  .upload_content {
+    &.media-file-width {
+      :deep(.el-space__item) {
+        min-width: 100% !important;
+      }
     }
   }
 }

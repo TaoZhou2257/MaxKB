@@ -327,6 +327,12 @@ function getTools() {
     MsgError(t('views.applicationWorkflow.nodes.mcpNode.mcpToolTip'))
     return
   }
+  if (form_data.value.mcp_source === 'referencing' && form_data.value.mcp_tool_id) {
+    if (!mcpToolSelectOptions.value.find((item) => item.id === form_data.value.mcp_tool_id)) {
+      MsgError(t('views.applicationWorkflow.nodes.mcpNode.mcpToolTip'))
+      return
+    }
+  }
   if (form_data.value.mcp_source === 'custom' && !form_data.value.mcp_servers) {
     MsgError(t('views.applicationWorkflow.nodes.mcpNode.mcpServerTip'))
     return
@@ -531,7 +537,7 @@ onMounted(() => {
       set(props.nodeModel.properties.node_data, 'is_result', true)
     }
   }
-  if (props.nodeModel.properties.node_data.mcp_servers) {
+  if (props.nodeModel.properties.node_data.mcp_servers && !props.nodeModel.properties.node_data.mcp_source) {
     set(props.nodeModel.properties.node_data, 'mcp_source', 'custom')
   }
   getMcpToolSelectOptions()

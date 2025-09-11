@@ -154,7 +154,14 @@ class ChatInfo:
             'search_mode': self.application.knowledge_setting.get('search_mode') or 'embedding',
             'no_references_setting': self.get_no_references_setting(self.application.knowledge_setting, model_setting),
             'workspace_id': self.application.workspace_id,
-            'application_id': self.application.id
+            'application_id': self.application.id,
+            'mcp_enable': self.application.mcp_enable,
+            'mcp_tool_ids': self.application.mcp_tool_ids,
+            'mcp_servers': self.application.mcp_servers,
+            'mcp_source': self.application.mcp_source,
+            'tool_enable': self.application.tool_enable,
+            'tool_ids': self.application.tool_ids,
+            'mcp_output_enable': self.application.mcp_output_enable,
         }
 
     def to_pipeline_manage_params(self, problem_text: str, post_response_handler: PostResponseHandler,

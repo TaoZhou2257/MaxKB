@@ -8836,3 +8836,9 @@ msgstr "時長"
 
 msgid "Failed to generate video"
 msgstr "生成視頻失敗"
+
+msgid "password"
+msgstr "密码登录"
+
+msgid "Failed to obtain the image"
+msgstr "獲取圖片失敗"

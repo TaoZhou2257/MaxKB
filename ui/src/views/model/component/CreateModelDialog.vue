@@ -153,10 +153,12 @@
               base_form_data.model_type !== 'TTS' &&
               base_form_data.model_type !== 'LLM' &&
               base_form_data.model_type !== 'IMAGE' &&
-              base_form_data.model_type !== 'TTI'
+              base_form_data.model_type !== 'TTI' &&
+              base_form_data.model_type !== 'TTV' &&
+              base_form_data.model_type !== 'ITV'
             "
           >
-            <AppIcon iconName="Plus" class="add-icon" />{{ $t('common.add') }}
+            <AppIcon iconName="app-add-outlined" class="mr-4"/> {{ $t('common.add') }}
           </el-button>
         </div>
         <el-table

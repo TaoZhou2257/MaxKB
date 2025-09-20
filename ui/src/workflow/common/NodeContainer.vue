@@ -13,7 +13,7 @@
             @drag.prevent
             @dragover.prevent
             @dragend.prevent
-            style="width: 70%"
+            style="width: 69%"
           >
             <component
               :is="iconComponent(`${nodeModel.type}-icon`)"
@@ -334,7 +334,9 @@ const nodeFields = computed(() => {
 })
 
 function showOperate(type: string) {
-  return type !== WorkflowType.Base && type !== WorkflowType.Start
+  return ![WorkflowType.Start, WorkflowType.Base, WorkflowType.LoopStartNode.toString()].includes(
+    type,
+  )
 }
 const openNodeMenu = (anchorValue: any) => {
   showAnchor.value = true

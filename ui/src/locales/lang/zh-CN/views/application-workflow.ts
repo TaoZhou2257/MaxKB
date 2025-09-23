@@ -78,6 +78,7 @@ export default {
     needConnect1: '节点的',
     needConnect2: '分支需要连接',
     cannotEndNode: '节点不能当做结束节点',
+    loopNodeBreakNodeRequired: '无线循环 必须存在 Break 节点',
   },
   nodes: {
     classify: {
@@ -352,6 +353,10 @@ export default {
         arrayLoop: '数组循环',
         numberLoop: '指定次数循环',
         infiniteLoop: '无限循环',
+      },
+      loopNumber: {
+        label: '循环次数',
+        requiredMessage: '循环次数必填',
       },
       loopArray: {
         label: '循环数组',

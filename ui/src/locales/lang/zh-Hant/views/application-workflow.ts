@@ -76,6 +76,7 @@ export default {
     needConnect1: '節點的',
     needConnect2: '分支需要連接',
     cannotEndNode: '節點不能當做結束節點',
+    loopNodeBreakNodeRequired: '無線迴圈必須存在Break節點',
   },
   nodes: {
     classify: {
@@ -345,6 +346,10 @@ export default {
         arrayLoop: '數組循環',
         numberLoop: '指定次數循環',
         infiniteLoop: '無限循環',
+      },
+      loopNumber: {
+        label: '循環次數',
+        requiredMessage: '請填寫循環次數',
       },
       loopArray: {
         label: '循環數組',

@@ -9,12 +9,17 @@
 import time
 from typing import Dict, List
 
+from django.utils.translation import gettext as _
+
 from application.flow.common import Answer
 from application.flow.i_step_node import NodeResult, WorkFlowPostHandler, INode
 from application.flow.step_node.loop_node.i_loop_node import ILoopNode
 from application.flow.tools import Reasoning
 from application.models import ChatRecord
 from common.handle.impl.response.loop_to_response import LoopToResponse
+from maxkb.const import CONFIG
+
+max_loop_count = int(CONFIG.get("WORKFLOW_LOOP_NODE_MAX_LOOP_COUNT", 500))
 
 
 def _is_interrupt_exec(node, node_variable: Dict, workflow_variable: Dict):
@@ -115,6 +120,7 @@ def generate_while_loop(current_index: int):
     index = current_index
     while True:
         yield index, index
+        index += 1
 
 
 def loop(workflow_manage_new_instance, node: INode, generate_loop):
@@ -126,6 +132,7 @@ def loop(workflow_manage_new_instance, node: INode, generate_loop):
     current_index = node.context.get("current_index") or 0
     node_params = node.node_params
     start_node_id = node_params.get('child_node', {}).get('runtime_node_id')
+    loop_type = node_params.get('loop_type')
     start_node_data = None
     chat_record = None
     child_node = None
@@ -137,6 +144,8 @@ def loop(workflow_manage_new_instance, node: INode, generate_loop):
                                  details=loop_node_data[current_index])
 
     for item, index in generate_loop(current_index):
+        if 0 < max_loop_count <= index - current_index and loop_type == 'LOOP':
+            raise Exception(_('Exceeding the maximum number of cycles'))
         """
         指定次数循环
         @return:
@@ -165,7 +174,17 @@ def loop(workflow_manage_new_instance, node: INode, generate_loop):
             answer += content_chunk
             yield chunk
             if chunk.get('node_status', "SUCCESS") == 'ERROR':
-                raise Exception(chunk.get('content'))
+                insert_or_replace(loop_node_data, index, instance.get_runtime_details())
+                insert_or_replace(loop_answer_data, index,
+                                  get_answer_list(instance, child_node_node_dict, node.runtime_node_id))
+                node.context['is_interrupt_exec'] = is_interrupt_exec
+                node.context['loop_node_data'] = loop_node_data
+                node.context['loop_answer_data'] = loop_answer_data
+                node.context["index"] = current_index
+                node.context["item"] = current_index
+                node.status = 500
+                node.err_message = chunk.get('content')
+                return
             node_type = chunk.get('node_type')
             if node_type == 'form-node':
                 break_outer = True
@@ -174,7 +193,6 @@ def loop(workflow_manage_new_instance, node: INode, generate_loop):
         start_node_data = None
         chat_record = None
         child_node = None
-        loop_global_data = instance.context
         insert_or_replace(loop_node_data, index, instance.get_runtime_details())
         insert_or_replace(loop_answer_data, index,
                           get_answer_list(instance, child_node_node_dict, node.runtime_node_id))

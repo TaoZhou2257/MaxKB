@@ -43,6 +43,7 @@
           <ModelSelect
             @change="model_change"
             @wheel="wheel"
+             @focus="getSelectModel"
             :teleported="false"
             v-model="form_data.model_id"
             :placeholder="
@@ -50,7 +51,7 @@
             "
             :options="modelOptions"
             showFooter
-            :model-type="'TTI'"
+            :model-type="'TTV'"
           ></ModelSelect>
         </el-form-item>
 

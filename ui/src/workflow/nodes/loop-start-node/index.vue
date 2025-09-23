@@ -1,5 +1,6 @@
 <template>
   <NodeContainer :nodeModel="nodeModel">
+    <h5 class="title-decoration-1 mb-8">{{ $t('views.applicationWorkflow.nodeSetting') }}</h5>
     <LoopFieldTable :nodeModel="nodeModel"></LoopFieldTable>
     <template v-if="loop_input_fields?.length">
       <h5 class="title-decoration-1 mb-8">
@@ -52,7 +53,6 @@ watch(loop_input_fields, () => {
 const showicon = ref(false)
 
 onMounted(() => {
-  console.log(cloneDeep(loop_input_fields.value))
   props.nodeModel.graphModel.refresh_loop_fields(cloneDeep(loop_input_fields.value))
 })
 </script>

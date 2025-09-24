@@ -141,7 +141,7 @@
               <template #footer>
                 <div class="footer-content flex-between">
                   <div>
-                    <span v-if="item.template_id"> {{ $t('common.author') }}: MaxKB</span>
+                    <span v-if="item.template_id"> {{ $t('common.author') }}: admin</span>
                   </div>
                   <div @click.stop>
                     <el-switch

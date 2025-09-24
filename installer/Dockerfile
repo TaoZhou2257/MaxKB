@@ -30,7 +30,7 @@ RUN python3 -m venv /opt/py3 && \
     export MAXKB_CONFIG_TYPE=ENV && python3 /opt/maxkb/app/apps/manage.py compilemessages
 
 FROM ghcr.io/1panel-dev/maxkb-python-pg:python3.11-pg15.14
-ARG DOCKER_IMAGE_TAG=dev \
+ARG DOCKER_IMAGE_TAG=v1.0 \
     BUILD_AT \
     GITHUB_COMMIT
 

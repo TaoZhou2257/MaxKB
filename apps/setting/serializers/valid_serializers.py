@@ -21,15 +21,15 @@ from users.models import User
 from django.utils.translation import gettext_lazy as _
 
 model_message_dict = {
-    'dataset': {'model': DataSet, 'count': 50,
+    'dataset': {'model': DataSet, 'count': 100,
                 'message': _(
-                    'The community version supports up to 50 knowledge bases. If you need more knowledge bases, please contact us (https://fit2cloud.com/).')},
-    'application': {'model': Application, 'count': 5,
+                    'The community version supports up to 100 knowledge bases. If you need more knowledge bases, please contact us .')},
+    'application': {'model': Application, 'count': 100,
                     'message': _(
-                        'The community version supports up to 5 applications. If you need more applications, please contact us (https://fit2cloud.com/).')},
-    'user': {'model': User, 'count': 2,
+                        'The community version supports up to 100 applications. If you need more applications, please contact us .')},
+    'user': {'model': User, 'count': 100,
              'message': _(
-                 'The community version supports up to 2 users. If you need more users, please contact us (https://fit2cloud.com/).')}
+                 'The community version supports up to 100 users. If you need more users, please contact us .')}
 }
 
 
@@ -41,6 +41,7 @@ class ValidSerializer(serializers.Serializer):
     valid_count = serializers.IntegerField(required=True, error_messages=ErrMessage.integer(_('check quantity')))
 
     def valid(self, is_valid=True):
+        '''
         if is_valid:
             self.is_valid(raise_exception=True)
         model_value = model_message_dict.get(self.data.get('valid_type'))
@@ -52,4 +53,5 @@ class ValidSerializer(serializers.Serializer):
             if QuerySet(
                     model_value.get('model')).count() >= model_value.get('count'):
                 raise AppApiException(400, model_value.get('message'))
+        '''
         return True

@@ -12,7 +12,7 @@ export default {
     expiredTime: '到期时间',
     edition: {
       label: '版本',
-      community: '社区版',
+      community: '-',
       professional: '专业版'
     },
     version: '版本号',
@@ -27,7 +27,7 @@ export default {
     expired: '已过期',
     expiringSoon: '即将到期'
   },
-  copyright: '版权所有 © 2014-2025 杭州飞致云信息科技有限公司',
+  copyright: '版权所有 © 2014-2025',
   userManualUrl: 'https://maxkb.cn/docs/',
   forumUrl: 'https://bbs.fit2cloud.com/c/mk/11'
 }

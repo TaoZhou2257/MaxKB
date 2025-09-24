@@ -20,9 +20,9 @@
             </el-text>
           </p>
         </div>
-        <el-dropdown-item class="border-t p-8" @click="openResetPassword">
+<!--        <el-dropdown-item class="border-t p-8" @click="openResetPassword">
           {{ $t('views.login.resetPassword') }}
-        </el-dropdown-item>
+        </el-dropdown-item>-->
         <div v-hasPermission="new ComplexPermission([], ['x-pack'], 'OR')">
           <el-dropdown-item class="border-t p-8" @click="openAPIKeyDialog">
             {{ $t('layout.apiKey') }}

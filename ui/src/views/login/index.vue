@@ -64,14 +64,14 @@
           <!-- <el-button class="register" @click="router.push('/register')" link type="primary">
           注册
         </el-button> -->
-          <el-button
+<!--          <el-button
             class="forgot-password"
             @click="router.push('/forgot_password')"
             link
             type="primary"
           >
             {{ $t('views.login.forgotPassword') }}?
-          </el-button>
+          </el-button>-->
         </div>
       </div>
       <div v-if="showQrCodeTab">
